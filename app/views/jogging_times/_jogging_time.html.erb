@@ -1,4 +1,4 @@
-<div id="<%= dom_id jogging_time %>">
+<div id="<%= dom_id jogging_time %>" class= "post-container">
   <p>
     <strong>Date:</strong>
     <%= jogging_time.date %>
@@ -19,4 +19,9 @@
     <%= jogging_time.user_id %>
   </p>
 
+  <p>
+    <%= link_to "", jogging_time, class:"post-link" %>
+  </p>
+
 </div>
+ 

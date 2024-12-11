@@ -1,2 +1,5 @@
 class ApplicationController < ActionController::Base
-end
+    before_action :authenticate_user!
+    include Devise::Controllers::Helpers
+  end
+  

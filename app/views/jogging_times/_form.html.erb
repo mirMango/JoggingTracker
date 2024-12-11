@@ -1,4 +1,6 @@
+<div class= "col-xl-4" style= "margin: auto; background-color: #f8f8f8; border-radius: 6px; padding: 15px; box-shadow: 0px 0px 2px 2px (255, 255, 255, 0.1)">
 <%= form_with(model: jogging_time) do |form| %>
+  <h1>New jogging time</h1>
   <% if jogging_time.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(jogging_time.errors.count, "error") %> prohibited this jogging_time from being saved:</h2>
@@ -11,27 +13,26 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :date, style: "display: block" %>
-    <%= form.date_field :date %>
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_field :date, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :distance, style: "display: block" %>
-    <%= form.text_field :distance %>
+  <div class="field">
+    <%= form.label :distance %>
+    <%= form.number_field :distance, class: "form-control"  %>
+    <%= form.select :distance_unit, options_for_select([['Meters', 'meters'], ['Kilometers', 'kilometers']]), { prompt: 'Select Unit' }, class: "form-control"  %>
   </div>
 
-  <div>
-    <%= form.label :time, style: "display: block" %>
-    <%= form.time_field :time %>
+  <div class="field">
+    <%= form.label :time %>
+    <%= form.number_field :hours, value: (@jogging_time.time || 0) / 60, class: "form-control" %> Hours
+    <%= form.number_field :minutes, value: (@jogging_time.time || 0) % 60, class: "form-control" %> Minutes
   </div>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
+  <div class="actions">
+    <%= form.submit "Submit", class: "btn btn-primary col-12" %>
   </div>
 
-  <div>
-    <%= form.submit %>
-  </div>
 <% end %>
+</div>

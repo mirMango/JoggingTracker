@@ -15,6 +15,8 @@ gem "bootsnap", require: false
 
 #new gems
 
+gem 'devise'
+
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
 end
