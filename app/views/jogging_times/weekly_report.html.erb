@@ -1,0 +1,25 @@
+<% content_for :title, "Weekly Report" %>
+
+<div class="container mt-5">
+  <h1>Weekly Report</h1>
+  <p>Here is your report on average speed and distance per week:</p>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Week</th>
+        <th>Average Distance (km)</th>
+        <th>Average Speed (km/h)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @weekly_report.each do |report| %>
+        <tr>
+          <td><%= report[:week] %></td>
+          <td><%= number_with_precision(report[:avg_distance], precision: 2) %></td>
+          <td><%= number_with_precision(report[:avg_speed], precision: 2) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

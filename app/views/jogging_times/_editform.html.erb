@@ -1,6 +1,6 @@
 <div class= "col-xl-4" style= "margin: auto; background-color: #f8f8f8; border-radius: 6px; padding: 15px; box-shadow: 0px 0px 2px 2px (255, 255, 255, 0.1)">
 <%= form_with(model: jogging_time) do |form| %>
-  <h1>New jogging time</h1>
+  <h1>Edit jogging time</h1>
   <% if jogging_time.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(jogging_time.errors.count, "error") %> prohibited this jogging_time from being saved:</h2>
@@ -11,7 +11,7 @@
         <% end %>
       </ul>
     </div>
-  <% end %>
+  <% end %> 
 
   <div class="field">
     <%= form.label :date %>

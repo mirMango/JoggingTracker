@@ -1,0 +1,17 @@
+<h1>All Users</h1>
+<%= form_with(url: user_index_path, method: :get, local: true) do %>
+  <div>
+    <%= label_tag :query, "Search users by email:" %>
+    <%= text_field_tag :query, params[:query] %>
+    <%= submit_tag "Search" %>
+  </div>
+<% end %>
+
+<% @users.each do |user| %>
+  <div>
+    <p>
+      <%= link_to user.email, edit_user_path(user) %> |
+      <%= link_to "Delete", user, method: :delete, data: { confirm: "Are you sure?" } %>
+    </p>
+  </div>
+<% end %>

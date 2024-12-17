@@ -1,10 +1,13 @@
-<p style="color: green"><%= notice %></p>
+<div class="post-container" style="margin: auto">
+  <p style="color: green"><%= notice %></p>
 
-<%= render @jogging_time %>
+  <%= render @jogging_time %>
 
-<div>
-  <%= link_to "Edit this jogging time", edit_jogging_time_path(@jogging_time) %> |
-  <%= link_to "Back to jogging times", jogging_times_path %>
+  <% if current_user && (current_user == @jogging_time.user || current_user.admin?) %>
+    <div>
+      <%= link_to "Edit this jogging time", edit_jogging_time_path(@jogging_time) %> |
+      <%= button_to "Destroy this jogging time", @jogging_time, method: :delete %>
+    </div>
+  <% end %>
 
-  <%= button_to "Destroy this jogging time", @jogging_time, method: :delete %>
 </div>

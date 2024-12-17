@@ -1,11 +1,38 @@
-<%= stylesheet_link_tag("jogging_time") %>
-<p style="color: green"><%= notice %></p>
-
-<h1>Jogging times</h1>
-
-<div id="jogging_times" class= "text-center">
-  <% @jogging_times.each do |jogging_time| %>
-    <%= render jogging_time %>
+<div class="vertical-spacing"></div>
+<% if user_signed_in? %>
+  <% if current_user.admin? %>
+    You are an admin
+  <% elsif current_user.moderator? %>
+    You are a moderator
   <% end %>
-</div>
+<% end %>
+<div class="text-center">
+  <%= stylesheet_link_tag("jogging_time") %>
+  <p style="color: green"><%= notice %></p>
 
+  <div class="col-12" style="margin: auto;">
+    <h1>Jogging times</h1>
+    <div class="vertical-spacing"></div>
+  </div>
+
+  <div class="date-filter">
+    <%= form_with url: jogging_times_path, method: :get, local: true do |form| %>
+      <div>
+        <%= label_tag :start_date, "From:" %>
+        <%= date_field_tag :start_date, params[:start_date], class: "date-field" %>
+
+        <%= label_tag :end_date, "To:" %>
+        <%= date_field_tag :end_date, params[:end_date], class: "date-field" %>
+
+        <%= submit_tag "Filter", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div id="jogging_times" class="text-center">
+    <% @jogging_times.each do |jogging_time| %>
+      <%= render jogging_time %>
+      <br />
+    <% end %>
+  </div>
+</div>

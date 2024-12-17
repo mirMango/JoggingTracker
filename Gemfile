@@ -16,6 +16,9 @@ gem "bootsnap", require: false
 #new gems
 
 gem 'devise'
+gem 'htmlbeautifier'
+gem 'ransack'
+gem 'groupdate'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
