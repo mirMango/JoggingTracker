@@ -11,10 +11,9 @@
         </li>
         <% if user_signed_in? %>
           <% if current_user.admin? || current_user.moderator? %>
-            <%= form_with url: users_path, method: :get, local: true do |form| %>
-              <%= form.search_field :query, value: params[:query], placeholder: "Search users...", class: "search-field" %>
-              <%= form.submit "Search", class: "btn btn-primary" %>
-            <% end %>
+            <li class="nav-item">
+              <%= link_to "Users", users_path, class: "nav-link" %>
+            </li>
           <% end %>
         <% end %>
 
@@ -27,13 +26,7 @@
             <%= link_to "Edit Account", edit_user_registration_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "My Profile", current_user, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Users", users_path, class: "nav-link" %>
+            <%= button_to "Sign Out", destroy_user_session_path, method: :delete,data: { turbo: false }, class: "nav-link" %>
           </li>
           <li class="nav-item"> 
             <%= link_to "Weekly Report", weekly_report_path, class: "nav-link" %> 

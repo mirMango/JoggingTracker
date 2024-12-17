@@ -1,6 +1,6 @@
 class JoggingTimesController < ApplicationController
   before_action :set_jogging_time, only: %i[show edit update destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!
   before_action :authorize_user!, only: %i[edit update destroy]
 
   # GET /jogging_times or /jogging_times.json
@@ -9,9 +9,9 @@ class JoggingTimesController < ApplicationController
     @end_date = params[:end_date]
 
     @jogging_times = if @start_date.present? && @end_date.present?
-                      JoggingTime.where(date: @start_date..@end_date)
+                      current_user.jogging_times.where(date: @start_date..@end_date)
                     else
-                      JoggingTime.all
+                      current_user.jogging_times
                     end
   end
   

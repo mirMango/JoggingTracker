@@ -4,10 +4,15 @@ class UsersController < ApplicationController
     before_action :set_user, only: [:show, :edit, :update, :destroy]
   
     def index
-      query = User.ransack(email_cont: params[:query])
-      @users = query.result(distinct: true)
+      if params[:email]
+       
+        @users = User.where("users.email like ?", "%#{params[:email]}%")
+        else
+          @users = User.all 
+      end
+      @users 
     end
-  
+
     def show
     end
   
@@ -26,7 +31,7 @@ class UsersController < ApplicationController
       @user.destroy!
       redirect_to users_path, notice: "User was successfully destroyed."
     end
-  
+
     private
   
     def set_user
@@ -38,7 +43,7 @@ class UsersController < ApplicationController
     end
   
     def authorize_user_management
-      unless current_user.admin? || current_user.manager?
+      unless current_user.admin? || current_user.moderator?
         redirect_to root_path, alert: "You are not authorized to perform this action."
       end
     end

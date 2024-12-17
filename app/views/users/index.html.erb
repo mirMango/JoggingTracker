@@ -1,8 +1,9 @@
 <h1>All Users</h1>
-<%= form_with(url: user_index_path, method: :get, local: true) do %>
+
+<%= form_with(url: users_path, method: :get, local: true) do %>
   <div>
-    <%= label_tag :query, "Search users by email:" %>
-    <%= text_field_tag :query, params[:query] %>
+    <%= label_tag :email, "Search users by email:" %>
+    <%= text_field_tag :email, params[:email] %>
     <%= submit_tag "Search" %>
   </div>
 <% end %>
